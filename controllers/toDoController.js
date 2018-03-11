@@ -7,7 +7,23 @@ mongoose.connect('mongodb://test:test@ds111319.mlab.com:11319/wellness');
 //Create a schema
 var wellnessSchema = new mongoose.Schema({
   projectName: String,
-  brand: String
+              titleHead: String,
+              titleBody: String,
+              titleBody2: String,
+              productLink: String,
+              category: String,
+              zoom1:String,
+              zoom2: String,
+              zoom3: String,
+              zoom4: String,
+              description: String,
+              msrpPrice: String,
+              yourPrice: String,
+              discount: String,
+              buttonSrc : String,
+              useCode : String,
+              additionalInfos: []
+
 });
 
 var Wellness = mongoose.model('Wellness', wellnessSchema);
