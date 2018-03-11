@@ -2,14 +2,15 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 //Connect to the database
-mongoose.connect('mongodb://test:test@ds111319.mlab.com:11319/todo');
+mongoose.connect('mongodb://test:test@ds111319.mlab.com:11319/wellness');
 
 //Create a schema
-var todoSchema = new mongoose.Schema({
-  item: String
+var wellnessSchema = new mongoose.Schema({
+  projectName: String,
+  brand: String
 });
 
-var Todo = mongoose.model('Todo', todoSchema);
+var Wellness = mongoose.model('Wellness', wellnessSchema);
 // var itemOne = Todo({item: 'buy flowers'}).save(function(err){
 //   if (err) throw err;
 //   console.log('item saved');
@@ -21,7 +22,7 @@ var urlencodedParser = bodyParser.urlencoded({extended:false});
 module.exports = function(app){
 
   app.get('/todo', function(req, res){
-    Todo.find({}, function(err, data){
+    Wellness.find({}, function(err, data){
       if (err) throw err;
       res.render('todo', {todos:data});
     });
@@ -29,7 +30,7 @@ module.exports = function(app){
   });
 
   app.post('/todo', urlencodedParser, function(req, res){
-    var newTodo = Todo(req.body).save(function(err, data){
+    var newWellness = Wellness(req.body).save(function(err, data){
       if (err) throw err;
       res.json(data);
     })
